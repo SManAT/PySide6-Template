@@ -1,6 +1,8 @@
 from pathlib import Path
 import sys
 
+from PySide6.QtWidgets import QMainWindow
+
 from ui.Ui_MainWindow import Ui_MainWindow
 
 
@@ -8,17 +10,12 @@ class MainWindow(QMainWindow):
 
     def __init__(self):
         super(MainWindow, self).__init__()
-
         self.rootDir = Path(__file__).parent
 
         # Setup UI using compiled file after using UIC
-
         self.ui = Ui_MainWindow()
-
         self.ui.setupUi(self)
-
         # Load stylesheet after UI setup
-
         self.load_stylesheet("styles.css")
 
     def load_stylesheet(self, file_path):
