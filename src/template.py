@@ -1,6 +1,7 @@
 import sys
 from pathlib import Path
 
+from PySide6.QtGui import QIcon, QPixmap
 from PySide6.QtWidgets import QApplication, QMainWindow
 
 from ui.Ui_MainWindow import Ui_MainWindow
@@ -17,6 +18,31 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)
         # Load stylesheet after UI setup
         self.load_stylesheet("styles.css")
+
+        # UI Stuff ---------------------------------
+        self.setWindowTitle("Mein erstes Fenster")
+
+        # load window icon
+        path_to_icon = "assets/app.ico"  # relative to the project root
+        pixmap = QPixmap()
+        pixmap.loadFromData(Path(path_to_icon).read_bytes())
+        appIcon = QIcon(pixmap)
+        self.setWindowIcon(appIcon)
+
+        # Connect events ----------------------------
+        self.ui.SSID.setPlainText("Mein WLAN --------------")
+
+        inhalt = self.ui.SSID.toPlainText()
+        print(inhalt)
+
+        # self.ui.closeBtn_2.clicked.connect(lambda: self.parameter(12))
+        self.ui.closeBtn_2.clicked.connect(self.btnClick)
+
+        # show the window
+        self.show()
+
+    def btnClick(self):
+        print("Button wurde ANGEKLICKT")
 
     def load_stylesheet(self, file_path):
         css_path = Path.joinpath(self.rootDir, "css", file_path)

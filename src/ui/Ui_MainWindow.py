@@ -23,53 +23,56 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(559, 401)
+        MainWindow.resize(591, 401)
+        icon = QIcon()
+        icon.addFile(u"../../assets/app.ico", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        MainWindow.setWindowIcon(icon)
         MainWindow.setStyleSheet(u"font-size:14px")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.gridLayout_2 = QGridLayout(self.centralwidget)
         self.gridLayout_2.setObjectName(u"gridLayout_2")
+        self.plainTextEdit_2 = QPlainTextEdit(self.centralwidget)
+        self.plainTextEdit_2.setObjectName(u"plainTextEdit_2")
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Maximum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.plainTextEdit_2.sizePolicy().hasHeightForWidth())
+        self.plainTextEdit_2.setSizePolicy(sizePolicy)
+        self.plainTextEdit_2.setMaximumSize(QSize(16777215, 35))
+
+        self.gridLayout_2.addWidget(self.plainTextEdit_2, 3, 0, 1, 1)
+
         self.label = QLabel(self.centralwidget)
         self.label.setObjectName(u"label")
 
         self.gridLayout_2.addWidget(self.label, 0, 0, 1, 1)
 
-        self.closeBtn_2 = QPushButton(self.centralwidget)
-        self.closeBtn_2.setObjectName(u"closeBtn_2")
-        self.closeBtn_2.setStyleSheet(u"border-radius: 1em;")
+        self.SSID = QPlainTextEdit(self.centralwidget)
+        self.SSID.setObjectName(u"SSID")
+        sizePolicy.setHeightForWidth(self.SSID.sizePolicy().hasHeightForWidth())
+        self.SSID.setSizePolicy(sizePolicy)
+        self.SSID.setMaximumSize(QSize(16777215, 35))
+        font = QFont()
+        self.SSID.setFont(font)
+        self.SSID.setStyleSheet(u"")
 
-        self.gridLayout_2.addWidget(self.closeBtn_2, 5, 0, 1, 1)
-
-        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
-
-        self.gridLayout_2.addItem(self.verticalSpacer, 4, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.SSID, 1, 0, 1, 1)
 
         self.label_2 = QLabel(self.centralwidget)
         self.label_2.setObjectName(u"label_2")
 
         self.gridLayout_2.addWidget(self.label_2, 2, 0, 1, 1)
 
-        self.plainTextEdit = QPlainTextEdit(self.centralwidget)
-        self.plainTextEdit.setObjectName(u"plainTextEdit")
-        sizePolicy = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Maximum)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.plainTextEdit.sizePolicy().hasHeightForWidth())
-        self.plainTextEdit.setSizePolicy(sizePolicy)
-        self.plainTextEdit.setMaximumSize(QSize(16777215, 35))
-        font = QFont()
-        self.plainTextEdit.setFont(font)
-        self.plainTextEdit.setStyleSheet(u"")
+        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
-        self.gridLayout_2.addWidget(self.plainTextEdit, 1, 0, 1, 1)
+        self.gridLayout_2.addItem(self.verticalSpacer, 4, 0, 1, 1)
 
-        self.plainTextEdit_2 = QPlainTextEdit(self.centralwidget)
-        self.plainTextEdit_2.setObjectName(u"plainTextEdit_2")
-        sizePolicy.setHeightForWidth(self.plainTextEdit_2.sizePolicy().hasHeightForWidth())
-        self.plainTextEdit_2.setSizePolicy(sizePolicy)
-        self.plainTextEdit_2.setMaximumSize(QSize(16777215, 35))
+        self.closeBtn_2 = QPushButton(self.centralwidget)
+        self.closeBtn_2.setObjectName(u"closeBtn_2")
+        self.closeBtn_2.setStyleSheet(u"border-radius: 1em;")
 
-        self.gridLayout_2.addWidget(self.plainTextEdit_2, 3, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.closeBtn_2, 5, 0, 1, 1)
 
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -80,10 +83,10 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
-        self.label.setText(QCoreApplication.translate("MainWindow", u"SSID", None))
-        self.closeBtn_2.setText(QCoreApplication.translate("MainWindow", u"Klick Mich", None))
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Passwort", None))
-        self.plainTextEdit.setPlainText(QCoreApplication.translate("MainWindow", u"Mein WLAN", None))
         self.plainTextEdit_2.setPlainText(QCoreApplication.translate("MainWindow", u"Wirklich geheim", None))
+        self.label.setText(QCoreApplication.translate("MainWindow", u"SSID", None))
+        self.SSID.setPlainText(QCoreApplication.translate("MainWindow", u"Mein WLAN", None))
+        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Passwort", None))
+        self.closeBtn_2.setText(QCoreApplication.translate("MainWindow", u"Klick Mich", None))
     # retranslateUi
 
