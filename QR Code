@@ -1,0 +1,11 @@
+Codierung für den QR Code
+WIFI:T:WPA;S:SSIDNAME;P:PASSWORD;;
+
+Parameter	Bedeutung
+T:	Sicherheitstyp: WPA (empfohlen), WEP oder nopass (offen)
+S:	SSID (Name des WLAN-Netzwerks)
+P:	Passwort
+;;	Abschluss des Strings
+
+WPA2 Bsp
+WIFI:T:WPA;S:MeinNetzwerk;P:MeinSicheresPasswort;;

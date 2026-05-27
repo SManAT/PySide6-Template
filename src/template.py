@@ -1,8 +1,11 @@
 import sys
 from pathlib import Path
 
-from PySide6.QtGui import QIcon, QPixmap
+import PIL
+from PySide6 import QtCore, QtGui
+from PySide6.QtGui import QIcon, QPixmap, QScreen
 from PySide6.QtWidgets import QApplication, QMainWindow
+from qrcode.main import QRCode
 
 from ui.Ui_MainWindow import Ui_MainWindow
 
@@ -11,6 +14,7 @@ class MainWindow(QMainWindow):
 
     def __init__(self):
         super(MainWindow, self).__init__()
+
         self.rootDir = Path(__file__).parent
 
         # Setup UI using compiled file after using UIC
@@ -29,6 +33,13 @@ class MainWindow(QMainWindow):
         appIcon = QIcon(pixmap)
         self.setWindowIcon(appIcon)
 
+        # center on screen
+        screen = QApplication.primaryScreen()
+        screen_h = screen.availableGeometry().height()
+        screen_w = screen.availableGeometry().width()
+        self.setGeometry(0, 0, int(screen_w * 0.5), int(screen_h * 2 / 3))
+        self.center()
+
         # Connect events ----------------------------
         self.ui.SSID.setPlainText("Mein WLAN --------------")
 
@@ -41,8 +52,36 @@ class MainWindow(QMainWindow):
         # show the window
         self.show()
 
+    def center(self):
+        center = QScreen.availableGeometry(QApplication.primaryScreen()).center()
+        geo = self.frameGeometry()
+        geo.moveCenter(center)
+        self.move(geo.topLeft())
+
+    def createQRCode(self, filename):
+        import qrcode
+
+        data = "GeeksforGeeks"
+        qr = qrcode.QRCode(version=1, box_size=10, border=5, error_correction=qrcode.constants.ERROR_CORRECT_M)  # pyright: ignore[reportAttributeAccessIssue]
+        qr.add_data(data)
+        qr.make(fit=True)
+
+        img = qr.make_image(fill_color="red", back_color="white")
+        img.save(filename)
+
+    def setQRImage(self, filename):
+        """Load PNG and fit to label"""
+        pixmap = QtGui.QPixmap(filename)
+        # Scale to fit label size
+        # scaled = pixmap.scaledToWidth(self.ui.img.width(), QtCore.Qt.SmoothTransformation)
+        if pixmap.isNull() is False:
+            self.ui.img.setPixmap(pixmap)
+
     def btnClick(self):
         print("Button wurde ANGEKLICKT")
+        filename = "QRCode_SSID.png"
+        self.createQRCode(filename)
+        self.setQRImage(filename)
 
     def load_stylesheet(self, file_path):
         css_path = Path.joinpath(self.rootDir, "css", file_path)
@@ -53,11 +92,11 @@ class MainWindow(QMainWindow):
         except FileNotFoundError:
             print(f"CSS file '{css_path}' not found")
 
-    def closeEvent(self, event):
+    def closeEvent(self, event) -> None:
         """catch the closing Event"""
         print("X is clicked: I'm now closing ...")
 
-    def window_close(self):
+    def window_close(self) -> None:
         """exit the app"""
         app.quit()
 

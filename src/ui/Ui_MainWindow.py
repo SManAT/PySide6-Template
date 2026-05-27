@@ -16,8 +16,7 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QGridLayout, QLabel, QMainWindow,
-    QPlainTextEdit, QPushButton, QSizePolicy, QSpacerItem,
-    QWidget)
+    QPlainTextEdit, QPushButton, QSizePolicy, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -27,7 +26,26 @@ class Ui_MainWindow(object):
         icon = QIcon()
         icon.addFile(u"../../assets/app.ico", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         MainWindow.setWindowIcon(icon)
-        MainWindow.setStyleSheet(u"font-size:14px")
+        MainWindow.setStyleSheet(u"body{\n"
+"font-size:14px;\n"
+"}\n"
+"\n"
+"\n"
+".lionBtn {\n"
+"    font-size: 14px;\n"
+"    background: rgba(0, 0, 0, 0.08),\n"
+"                QLinearGradient(spread: pad, x1: 0, y1: 0,\n"
+"                               x2: 0, y2: 1,\n"
+"                               stop: 0 #e4fbff,\n"
+"                               stop: 0.1 #cee6fb,\n"
+"                               stop: 0.5 #a5d3fb,\n"
+"                               stop: 0.51 #88c6fb,\n"
+"                               stop: 1 #d5faff);\n"
+"    background-clip: padding;\n"
+"    border-radius: 5px;\n"
+"    padding: 3px 30px 3px 30px;\n"
+"    color: #242d35;\n"
+"}")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.gridLayout_2 = QGridLayout(self.centralwidget)
@@ -43,10 +61,10 @@ class Ui_MainWindow(object):
 
         self.gridLayout_2.addWidget(self.plainTextEdit_2, 3, 0, 1, 1)
 
-        self.label = QLabel(self.centralwidget)
-        self.label.setObjectName(u"label")
+        self.qrcode = QWidget(self.centralwidget)
+        self.qrcode.setObjectName(u"qrcode")
 
-        self.gridLayout_2.addWidget(self.label, 0, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.qrcode, 8, 0, 1, 1)
 
         self.SSID = QPlainTextEdit(self.centralwidget)
         self.SSID.setObjectName(u"SSID")
@@ -59,20 +77,52 @@ class Ui_MainWindow(object):
 
         self.gridLayout_2.addWidget(self.SSID, 1, 0, 1, 1)
 
+        self.label = QLabel(self.centralwidget)
+        self.label.setObjectName(u"label")
+
+        self.gridLayout_2.addWidget(self.label, 0, 0, 1, 1)
+
+        self.gridLayout = QGridLayout()
+        self.gridLayout.setObjectName(u"gridLayout")
+        self.img = QLabel(self.centralwidget)
+        self.img.setObjectName(u"img")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.img.sizePolicy().hasHeightForWidth())
+        self.img.setSizePolicy(sizePolicy1)
+        self.img.setPixmap(QPixmap(u"../../basic_qrcode.png"))
+        self.img.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.gridLayout.addWidget(self.img, 0, 0, 1, 1)
+
+
+        self.gridLayout_2.addLayout(self.gridLayout, 4, 0, 1, 1)
+
+        self.closeBtn_2 = QPushButton(self.centralwidget)
+        self.closeBtn_2.setObjectName(u"closeBtn_2")
+        self.closeBtn_2.setStyleSheet(u"background: rgba(0,0,0,0.08), \n"
+"QLinearGradient( spread:pad, x1: 0, y1: 0,\n"
+"                 x2: 0, y2: 1, \n"
+"                 stop: 0 #e4fbff, \n"
+"                 stop: 0.1 #cee6fb,\n"
+"                 stop: 0.5 #a5d3fb,\n"
+"                 stop: 0.51 #88c6fb,\n"
+"                 stop: 1 #d5faff\n"
+");\n"
+"background-insets: 0 0 -1 0,0,1;\n"
+"background-radius: 5,5,4;\n"
+"padding: 3 30 3 30;\n"
+"text-fill: #242d35;\n"
+"color: #000000;\n"
+"")
+
+        self.gridLayout_2.addWidget(self.closeBtn_2, 9, 0, 1, 1)
+
         self.label_2 = QLabel(self.centralwidget)
         self.label_2.setObjectName(u"label_2")
 
         self.gridLayout_2.addWidget(self.label_2, 2, 0, 1, 1)
-
-        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
-
-        self.gridLayout_2.addItem(self.verticalSpacer, 4, 0, 1, 1)
-
-        self.closeBtn_2 = QPushButton(self.centralwidget)
-        self.closeBtn_2.setObjectName(u"closeBtn_2")
-        self.closeBtn_2.setStyleSheet(u"border-radius: 1em;")
-
-        self.gridLayout_2.addWidget(self.closeBtn_2, 5, 0, 1, 1)
 
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -84,9 +134,10 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.plainTextEdit_2.setPlainText(QCoreApplication.translate("MainWindow", u"Wirklich geheim", None))
-        self.label.setText(QCoreApplication.translate("MainWindow", u"SSID", None))
         self.SSID.setPlainText(QCoreApplication.translate("MainWindow", u"Mein WLAN", None))
+        self.label.setText(QCoreApplication.translate("MainWindow", u"SSID", None))
+        self.img.setText("")
+        self.closeBtn_2.setText(QCoreApplication.translate("MainWindow", u"QR Code", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Passwort", None))
-        self.closeBtn_2.setText(QCoreApplication.translate("MainWindow", u"Klick Mich", None))
     # retranslateUi
 

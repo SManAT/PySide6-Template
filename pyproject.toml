@@ -21,6 +21,8 @@ keywords = ["pysid6", "gui", "desktop"]
 
 dependencies = [
     "pyside6>=6.4.0",
+    "qrcode",
+    "pillow"
 ]
 requires-python = ">=3.8"
 
