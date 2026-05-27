@@ -28,8 +28,9 @@ requires-python = ">=3.8"
 
 [project.optional-dependencies]
 dev = [
-    "pyqt6-tools",  # Move to optional - often causes issues
+    "pyqt6-tools",
     "build",
     "wheel",
+    "tomli ; python_version < '3.11'",
 ]
 
