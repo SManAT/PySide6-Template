@@ -1,11 +1,9 @@
 import sys
 from pathlib import Path
 
-import PIL
-from PySide6 import QtCore, QtGui
+from PySide6 import QtGui
 from PySide6.QtGui import QIcon, QPixmap, QScreen
 from PySide6.QtWidgets import QApplication, QMainWindow
-from qrcode.main import QRCode
 
 from ui.Ui_MainWindow import Ui_MainWindow
 
