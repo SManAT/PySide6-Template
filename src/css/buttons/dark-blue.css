@@ -1,0 +1,23 @@
+background:
+    #090a0c,
+    QLinearGradient( spread:pad, x1: 0, y1: 0,
+                     x2: 0, y2: 1,
+                     stop: 0 #38424b,
+                     stop: 0.2 #1f2429,
+                     stop: 1 #191d22
+    ),
+    QLinearGradient( spread:pad, x1: 0, y1: 0,
+                     x2: 0, y2: 1,
+                     stop: 0 #20262b,
+                     stop: 1 #191d22
+    ),
+    QRadialGradient( cx: 0.5, cy: 0.0, radius: 1.0,
+                     stop: 0 rgba(114,131,148,0.9),
+                     stop: 1 rgba(255,255,255,0)
+    );
+background-radius: 5,4,3,5;
+background-insets: 0,1,2,0;
+text-fill: white;
+font-family: "Arial";
+font-size: 12px;
+padding: 10 20 10 20;

@@ -6,6 +6,28 @@ A pyside 6 template for students
 This template is an example application to create QR Codes. It explains the common workflow for beginners.
 You will have for Windows some Batch Files. Those Batch Files are starting the pyside6 apps like designer or ui-compiler.
 
+The application is generating a QR Code, that implements WLAN SSID and Password.
+
+If you use it as Template, just delete the QRCode Parts and you are done.
+
+Check also *pyproject.toml*, and correct the dependencies part.
+
+```
+dependencies = [
+    "pyside6>=6.4.0",
+    "qrcode",
+    "pillow"
+]
+```
+
+To setup all Py modules do
+
+```
+pip install -e .
+```
+
+
+
 ## PySide 6 Applications
 
 | Programm | Kurzbeschreibung |
@@ -26,8 +48,3 @@ You will have for Windows some Batch Files. Those Batch Files are starting the p
 | `pyside6-metaobjectdump` | Analysiert Qt-MetaObject-Informationen |
 | `pyside6-qtpy2cpp` | Konvertiert Python-Qt-Code in C++ (experimentell) |
 
-## In Arbeit
-
-
-- das centralWidget im Fenster RM > Layout
-- Global mit CSS 

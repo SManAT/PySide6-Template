@@ -1,0 +1,19 @@
+background:
+    #707070,
+    QLinearGradient( spread:pad, x1: 0, y1: 0,
+                     x2: 0, y2: 1,
+                     stop: 0 #fcfcfc,
+                     stop: 1 #f3f3f3
+    ),
+    QLinearGradient( spread:pad, x1: 0, y1: 0,
+                     x2: 0, y2: 1,
+                     stop: 0 #f2f2f2,
+                     stop: 0.49 #ebebeb,
+                     stop: 0.5 #dddddd,
+                     stop: 1 #cfcfcf
+    );
+background-insets: 0,1,2;
+background-radius: 3,2,1;
+padding: 3 30 3 30;
+text-fill: black;
+font-size: 14px;

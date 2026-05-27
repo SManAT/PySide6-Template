@@ -1,0 +1,41 @@
+background:
+    QLinearGradient( spread:pad, x1: 0, y1: 0,
+                     x2: 0, y2: 1,
+                     stop: 0 #686868,
+                     stop: 0.25 #232723,
+                     stop: 0.75 #373837,
+                     stop: 1 #757575
+    ),
+    QLinearGradient( spread:pad, x1: 0, y1: 0,
+                     x2: 0, y2: 1,
+                     stop: 0 #020b02,
+                     stop: 1 #3a3a3a
+    ),
+    QLinearGradient( spread:pad, x1: 0, y1: 0,
+                     x2: 0, y2: 1,
+                     stop: 0 #9d9e9d,
+                     stop: 0.2 #6b6a6b,
+                     stop: 0.8 #343534,
+                     stop: 1 #242424
+    ),
+    QLinearGradient( spread:pad, x1: 0, y1: 0,
+                     x2: 0, y2: 1,
+                     stop: 0 #8a8a8a,
+                     stop: 0.2 #6b6a6b,
+                     stop: 0.8 #343534,
+                     stop: 1 #262626
+    ),
+    QLinearGradient( spread:pad, x1: 0, y1: 0,
+                     x2: 0, y2: 1,
+                     stop: 0 #777777,
+                     stop: 0.5 #606060,
+                     stop: 0.51 #505250,
+                     stop: 1 #2a2b2a
+    );
+background-insets: 0, 1, 4, 5, 6;
+background-radius: 9,8,5,4,3;
+padding: 15 30 15 30;
+font-family: "Helvetica";
+font-size: 18px;
+font-weight: bold;
+text-fill: white;

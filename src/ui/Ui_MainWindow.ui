@@ -121,20 +121,21 @@ font-size:14px;
     <item row="9" column="0">
      <widget class="QPushButton" name="closeBtn_2">
       <property name="styleSheet">
-       <string notr="true">background: rgba(0,0,0,0.08), 
-QLinearGradient( spread:pad, x1: 0, y1: 0,
-                 x2: 0, y2: 1, 
-                 stop: 0 #e4fbff, 
-                 stop: 0.1 #cee6fb,
-                 stop: 0.5 #a5d3fb,
-                 stop: 0.51 #88c6fb,
-                 stop: 1 #d5faff
-);
-background-insets: 0 0 -1 0,0,1;
-background-radius: 5,5,4;
-padding: 3 30 3 30;
-text-fill: #242d35;
-color: #000000;
+       <string notr="true">background:
+    QLinearGradient( spread:pad, x1: 0, y1: 0,
+                     x2: 0, y2: 1,
+                     stop: 0 #f0ff35,
+                     stop: 1 #a9ff00
+    ),
+    QRadialGradient( cx: 0.5, cy: -0.4, radius: 2.0,
+                     stop: 0 #b8ee36,
+                     stop: 0.45 #b8ee36,
+                     stop: 0.5 #80c800,
+                     stop: 1 #80c800
+    );
+background-radius: 6, 5;
+background-insets: 0, 1;
+text-fill: #395306;
 </string>
       </property>
       <property name="text">

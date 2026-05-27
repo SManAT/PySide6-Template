@@ -1,0 +1,33 @@
+background:
+    QLinearGradient( spread:pad, x1: 0, y1: 0,
+                     x2: 0, y2: 1,
+                     stop: 0 #ffd65b,
+                     stop: 1 #e68400
+    ),
+    QLinearGradient( spread:pad, x1: 0, y1: 0,
+                     x2: 0, y2: 1,
+                     stop: 0 #ffef84,
+                     stop: 1 #f2ba44
+    ),
+    QLinearGradient( spread:pad, x1: 0, y1: 0,
+                     x2: 0, y2: 1,
+                     stop: 0 #ffea6a,
+                     stop: 1 #efaa22
+    ),
+    QLinearGradient( spread:pad, x1: 0, y1: 0,
+                     x2: 0, y2: 1,
+                     stop: 0 #ffe657,
+                     stop: 0.5 #f8c202,
+                     stop: 1 #eea10b
+    ),
+    QLinearGradient( spread:pad, x1: 0, y1: 0,
+                     x2: 0.15, y2: 0.5,
+                     stop: 0 rgba(255,255,255,0.9),
+                     stop: 1 rgba(255,255,255,0)
+    );
+background-radius: 30;
+background-insets: 0,1,2,3,0;
+text-fill: #654b00;
+font-weight: bold;
+font-size: 14px;
+padding: 10 20 10 20;

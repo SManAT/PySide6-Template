@@ -1,0 +1,15 @@
+background:
+    QLinearGradient( spread:pad, x1: 0, y1: 0,
+                     x2: 0, y2: 1,
+                     stop: 0 #f0ff35,
+                     stop: 1 #a9ff00
+    ),
+    QRadialGradient( cx: 0.5, cy: -0.4, radius: 2.0,
+                     stop: 0 #b8ee36,
+                     stop: 0.45 #b8ee36,
+                     stop: 0.5 #80c800,
+                     stop: 1 #80c800
+    );
+background-radius: 6, 5;
+background-insets: 0, 1;
+text-fill: #395306;

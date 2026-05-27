@@ -1,0 +1,7 @@
+background:
+    QLinearGradient( spread:pad, x1: 0, y1: 0,
+                     x2: 0, y2: 1,
+                     stop: 0 #98a8bd,
+                     stop: 0.25 #8195af,
+                     stop: 1 #6d86a4
+    );
