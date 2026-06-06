@@ -1,5 +1,7 @@
 # PySide6-Template
-A pyside 6 template for students
+A pyside 6 template for students, also included 
+
+- Deployment Tools, PySide, Briefcase, cx_freeze and Nuktia see [PyInstaller.md](PyInstaller.md)
 
 # Introduction
 
