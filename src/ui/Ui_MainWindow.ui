@@ -13,10 +13,6 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <property name="windowIcon">
-   <iconset>
-    <normaloff>../../assets/app.ico</normaloff>../../assets/app.ico</iconset>
-  </property>
   <property name="styleSheet">
    <string notr="true">body{
 font-size:14px;
@@ -42,7 +38,7 @@ font-size:14px;
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_2">
     <item row="3" column="0">
-     <widget class="QPlainTextEdit" name="plainTextEdit_2">
+     <widget class="QPlainTextEdit" name="password">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
         <horstretch>0</horstretch>

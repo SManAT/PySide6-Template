@@ -25,11 +25,10 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("Mein erstes Fenster")
 
         # load window icon
-        path_to_icon = "assets/app.ico"  # relative to the project root
-        pixmap = QPixmap()
-        pixmap.loadFromData(Path(path_to_icon).read_bytes())
-        appIcon = QIcon(pixmap)
-        self.setWindowIcon(appIcon)
+        icon_path = self.rootDir.parent / "assets" / "app.ico"
+        if icon_path.exists():
+            appIcon = QIcon(str(icon_path))
+            self.setWindowIcon(appIcon)
 
         # center on screen
         screen = QApplication.primaryScreen()
@@ -39,7 +38,10 @@ class MainWindow(QMainWindow):
         self.center()
 
         # Connect events ----------------------------
-        self.ui.SSID.setPlainText("Mein WLAN --------------")
+        self.ssid = "Schüler"
+        self.password = "kindergarten123"
+        self.ui.SSID.setPlainText(self.ssid)
+        self.ui.password.setPlainText(self.password)
 
         inhalt = self.ui.SSID.toPlainText()
         print(inhalt)
@@ -59,12 +61,13 @@ class MainWindow(QMainWindow):
     def createQRCode(self, filename):
         import qrcode
 
-        data = "GeeksforGeeks"
+        data = f"WIFI:T:WPA;S:{self.ssid};P:{self.password};;"
+        print(data)
         qr = qrcode.QRCode(version=1, box_size=10, border=5, error_correction=qrcode.constants.ERROR_CORRECT_M)  # pyright: ignore[reportAttributeAccessIssue]
         qr.add_data(data)
         qr.make(fit=True)
 
-        img = qr.make_image(fill_color="red", back_color="white")
+        img = qr.make_image(fill_color="black", back_color="white")
         img.save(filename)
 
     def setQRImage(self, filename):

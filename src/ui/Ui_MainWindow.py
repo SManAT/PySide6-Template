@@ -23,9 +23,6 @@ class Ui_MainWindow(object):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(591, 401)
-        icon = QIcon()
-        icon.addFile(u"../../assets/app.ico", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        MainWindow.setWindowIcon(icon)
         MainWindow.setStyleSheet(u"body{\n"
 "font-size:14px;\n"
 "}\n"
@@ -50,16 +47,16 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName(u"centralwidget")
         self.gridLayout_2 = QGridLayout(self.centralwidget)
         self.gridLayout_2.setObjectName(u"gridLayout_2")
-        self.plainTextEdit_2 = QPlainTextEdit(self.centralwidget)
-        self.plainTextEdit_2.setObjectName(u"plainTextEdit_2")
+        self.password = QPlainTextEdit(self.centralwidget)
+        self.password.setObjectName(u"password")
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Maximum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.plainTextEdit_2.sizePolicy().hasHeightForWidth())
-        self.plainTextEdit_2.setSizePolicy(sizePolicy)
-        self.plainTextEdit_2.setMaximumSize(QSize(16777215, 35))
+        sizePolicy.setHeightForWidth(self.password.sizePolicy().hasHeightForWidth())
+        self.password.setSizePolicy(sizePolicy)
+        self.password.setMaximumSize(QSize(16777215, 35))
 
-        self.gridLayout_2.addWidget(self.plainTextEdit_2, 3, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.password, 3, 0, 1, 1)
 
         self.qrcode = QWidget(self.centralwidget)
         self.qrcode.setObjectName(u"qrcode")
@@ -101,20 +98,21 @@ class Ui_MainWindow(object):
 
         self.closeBtn_2 = QPushButton(self.centralwidget)
         self.closeBtn_2.setObjectName(u"closeBtn_2")
-        self.closeBtn_2.setStyleSheet(u"background: rgba(0,0,0,0.08), \n"
-"QLinearGradient( spread:pad, x1: 0, y1: 0,\n"
-"                 x2: 0, y2: 1, \n"
-"                 stop: 0 #e4fbff, \n"
-"                 stop: 0.1 #cee6fb,\n"
-"                 stop: 0.5 #a5d3fb,\n"
-"                 stop: 0.51 #88c6fb,\n"
-"                 stop: 1 #d5faff\n"
-");\n"
-"background-insets: 0 0 -1 0,0,1;\n"
-"background-radius: 5,5,4;\n"
-"padding: 3 30 3 30;\n"
-"text-fill: #242d35;\n"
-"color: #000000;\n"
+        self.closeBtn_2.setStyleSheet(u"background:\n"
+"    QLinearGradient( spread:pad, x1: 0, y1: 0,\n"
+"                     x2: 0, y2: 1,\n"
+"                     stop: 0 #f0ff35,\n"
+"                     stop: 1 #a9ff00\n"
+"    ),\n"
+"    QRadialGradient( cx: 0.5, cy: -0.4, radius: 2.0,\n"
+"                     stop: 0 #b8ee36,\n"
+"                     stop: 0.45 #b8ee36,\n"
+"                     stop: 0.5 #80c800,\n"
+"                     stop: 1 #80c800\n"
+"    );\n"
+"background-radius: 6, 5;\n"
+"background-insets: 0, 1;\n"
+"text-fill: #395306;\n"
 "")
 
         self.gridLayout_2.addWidget(self.closeBtn_2, 9, 0, 1, 1)
@@ -133,7 +131,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
-        self.plainTextEdit_2.setPlainText(QCoreApplication.translate("MainWindow", u"Wirklich geheim", None))
+        self.password.setPlainText(QCoreApplication.translate("MainWindow", u"Wirklich geheim", None))
         self.SSID.setPlainText(QCoreApplication.translate("MainWindow", u"Mein WLAN", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"SSID", None))
         self.img.setText("")

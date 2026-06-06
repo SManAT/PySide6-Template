@@ -1,8 +1,5 @@
 # Usage: 
-#   Normal Install: pip install -e .
-#   Build: python -m build
-# be sure setuptools and build are in latest version
-# pip install --upgrade setuptools build
+#   pip install -e .
 
 [build-system]
 requires = ["setuptools>=45", "wheel"]
@@ -34,4 +31,50 @@ dev = [
     "wheel",
     "tomli ; python_version < '3.11'",
 ]
+
+# PyInstaller configuration -----------------------------------------------------------
+[tool.qturtle.build]
+app_name = "QrCode"
+app_module = "src/template.py"
+icon = "assets/app.ico"
+data_files = [
+    "src/css",
+    "src/ui",
+]
+output_dir = "dist"
+build_mode = "onedir"  # onedir or onefile
+clean = true
+noconfirm = true
+windowed = true
+hidden_imports = [
+    "PySide6.QtCore",
+    "PySide6.QtGui",
+    "PySide6.QtWidgets",
+    "qturtle.ui.Ui_MainWindow",
+]
+collect_all = [
+    "PySide6",
+]
+
+# Briefcase configuration -------------------------------------------------------------
+[tool.briefcase]
+project_name = "QrCode"
+bundle = "org.qrcode"
+version = "0.1.0"
+license = "GPL-3.0-or-later"
+
+[tool.briefcase.app.qturtle]
+formal_name = "QrCode"
+description = "Python Template"
+sources = ["src/"]
+requires = ["pyside6>=6.4.0"]
+icon = "assets/app"
+license-files = ["LICENSE"]
+
+[tool.briefcase.app.qturtle.windows]
+requires = [
+    "pyside6>=6.4.0",
+    "svg-turtle>=1.0.0",
+]
+system_installer = true
 
