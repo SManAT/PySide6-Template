@@ -34,7 +34,8 @@ pip install -e .
 
 ```
 src/
-└── qrcode/              # Your package directory
+├── main.py
+└── qrcode_app/
     ├── __init__.py
     ├── ui/
     │   ├── __init__.py
