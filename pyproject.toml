@@ -41,7 +41,7 @@ briefcase = [
 # PyInstaller configuration -----------------------------------------------------------
 [tool.qrcode.build]
 app_name = "QRCode"
-app_module = "src/qrcode_app/__main__.py"
+app_module = "src/qrcode_app/main.py"
 icon = "assets/app.ico"
 data_files = [
     "src/qrcode_app/css",

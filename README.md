@@ -40,7 +40,7 @@ src/
     ├── ui/
     │   ├── __init__.py
     │   └── Ui_MainWindow.py
-    └── __main__.py
+    └── main.py
 ```
 
 

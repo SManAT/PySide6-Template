@@ -91,7 +91,7 @@ python -m nuitka ^
     --nofollow-import-to=tkinter ^
     --nofollow-import-to=PyQt6 ^
     --remove-output ^
-    src/qturtle/__main__.py
+    src/qturtle/main.py
 
 if errorlevel 1 (
     echo.

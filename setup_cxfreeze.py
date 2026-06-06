@@ -50,7 +50,7 @@ icon_path = "assets/app.ico"
 
 executables = [
     Executable(
-        script="src/qrcode_app/__main__.py",
+        script="src/qrcode_app/main.py",
         base="gui" if sys.platform == "win32" else None,
         target_name="QRCode.exe" if sys.platform == "win32" else "QRCode",
         icon=icon_path if (sys.platform == "win32" and Path(icon_path).exists()) else None,

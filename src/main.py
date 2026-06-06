@@ -1,5 +1,5 @@
 import sys
-from qrcode_app.__main__ import main
+from qrcode_app.main import main
 
 if __name__ == "__main__":
     sys.exit(main())
