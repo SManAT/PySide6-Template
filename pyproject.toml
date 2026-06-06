@@ -58,7 +58,7 @@ hidden_imports = [
     "PySide6.QtGui",
     "PySide6.QtWidgets",
     "PySide6.QtPrintSupport",
-    "ui.Ui_MainWindow",
+    "qrcode_app.ui.Ui_MainWindow",
 ]
 collect_all = []
 strip = true   # Strip debug symbols (Unix only, ignored on Windows)
