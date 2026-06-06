@@ -5,7 +5,7 @@ from PySide6 import QtGui
 from PySide6.QtGui import QIcon, QPixmap, QScreen
 from PySide6.QtWidgets import QApplication, QMainWindow
 
-from ui.Ui_MainWindow import Ui_MainWindow
+from qrcode_app.ui.Ui_MainWindow import Ui_MainWindow
 
 
 class MainWindow(QMainWindow):
@@ -97,15 +97,12 @@ class MainWindow(QMainWindow):
         """catch the closing Event"""
         print("X is clicked: I'm now closing ...")
 
-    def window_close(self) -> None:
-        """exit the app"""
-        app.quit()
+
+def main():
+    app = QApplication(sys.argv)
+    window = MainWindow()
+    return app.exec()
 
 
 if __name__ == "__main__":
-    jls_extract_var = QApplication
-    app = jls_extract_var(sys.argv)
-
-    window = MainWindow()
-
-    sys.exit(app.exec())
+    sys.exit(main())

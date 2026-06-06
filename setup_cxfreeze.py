@@ -11,16 +11,13 @@ build_exe_options = {
         "PySide6.QtGui",
         "PySide6.QtWidgets",
         "PySide6.QtPrintSupport",
-        "qturtle",
-        "qturtle.editor",
-        "qturtle.runner",
-        "qturtle.svg_turtle_class",
-        "qturtle.ui",
-        "qturtle.ui.Ui_MainWindow",
+        "qrcode",
+        "ui",
+        "ui.Ui_MainWindow",
     ],
     "include_files": [
-        ("src/qturtle/css", "lib/qturtle/css"),
-        ("src/qturtle/ui/Ui_MainWindow.ui", "lib/qturtle/ui/Ui_MainWindow.ui"),
+        ("src/qrcode_app/css", "lib/qrcode_app/css"),
+        ("src/qrcode_app/ui/Ui_MainWindow.ui", "lib/qrcode_app/ui/Ui_MainWindow.ui"),
     ],
     "excludes": [
         "PyQt6",
@@ -53,15 +50,15 @@ icon_path = "assets/app.ico"
 
 executables = [
     Executable(
-        script="src/qturtle/__main__.py",
+        script="src/qrcode_app/__main__.py",
         base="gui" if sys.platform == "win32" else None,
-        target_name="QTurtle.exe" if sys.platform == "win32" else "QTurtle",
+        target_name="QRCode.exe" if sys.platform == "win32" else "QRCode",
         icon=icon_path if (sys.platform == "win32" and Path(icon_path).exists()) else None,
     )
 ]
 
 setup(
-    name="QTurtle",
+    name="QRCode",
     version="1.0.0",
     description="Python IDE for turtle graphics scripts",
     options={"build_exe": build_exe_options},

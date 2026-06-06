@@ -1,7 +1,7 @@
 @echo off
 setlocal enabledelayedexpansion
 
-set "OUTPUT_DIR=dist\QTurtleCxFreeze"
+set "OUTPUT_DIR=dist\QRCodeCxFreeze"
 set "CXFREEZE_TEMP=build\cxfreeze_temp"
 
 echo ================================================
@@ -10,7 +10,7 @@ echo ================================================
 echo.
 echo What will be done:
 echo  1. Check/install cx_Freeze
-echo  2. Build QTurtle to standalone executable via setup_cxfreeze.py
+echo  2. Build App to standalone executable via setup_cxfreeze.py
 echo  3. Copy output to: %OUTPUT_DIR%\
 echo.
 echo  Check setup_cxfreeze.py for build parameters!
@@ -60,7 +60,6 @@ echo Cleaning old build artifacts...
 if exist "%OUTPUT_DIR%" rmdir /s /q "%OUTPUT_DIR%"
 if exist "%CXFREEZE_TEMP%" rmdir /s /q "%CXFREEZE_TEMP%"
 if exist __pycache__ rmdir /s /q __pycache__
-if exist src\qturtle\__pycache__ rmdir /s /q src\qturtle\__pycache__
 echo.
 
 echo Building with cx_Freeze...
@@ -91,7 +90,7 @@ for /d %%i in (build) do (
 echo.
 echo ================================================
 echo Build complete!
-echo Executable in : %OUTPUT_DIR%\QTurtle.exe
+echo Executable in : %OUTPUT_DIR%\
 REM size from Output
 powershell -NoProfile -Command "$b = (Get-ChildItem '%OUTPUT_DIR%' -Recurse 2>$null | Measure-Object -Property Length -Sum).Sum; $gb = $b/1GB; $mb = $b/1MB; $kb = $b/1KB; if ($gb -ge 1) { \"$([math]::Round($gb,2)) GB\" } elseif ($mb -ge 1) { \"$([math]::Round($mb,2)) MB\" } elseif ($kb -ge 1) { \"$([math]::Round($kb,2)) KB\" } elseif ($b -gt 0) { \"$b bytes\" } else { \"0 bytes\" }"
 echo ================================================

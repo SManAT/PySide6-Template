@@ -16,7 +16,7 @@ Check also *pyproject.toml*, and correct the dependencies part.
 
 ```
 dependencies = [
-    "pyside6>=6.4.0",
+    "pyside6-essentials>=6.4.0",
     "qrcode",
     "pillow"
 ]
@@ -26,6 +26,20 @@ To setup all Py modules do
 
 ```
 pip install -e .
+```
+
+
+
+# FIle Structure (important!)
+
+```
+src/
+└── qrcode/              # Your package directory
+    ├── __init__.py
+    ├── ui/
+    │   ├── __init__.py
+    │   └── Ui_MainWindow.py
+    └── __main__.py
 ```
 
 

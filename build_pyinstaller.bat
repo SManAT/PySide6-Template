@@ -2,7 +2,7 @@
 setlocal enabledelayedexpansion
 
 REM Output directory variables
-set "OUTPUT_DIR=dist\QTurtle"
+set "OUTPUT_DIR=dist\QRCode"
 
 echo ================================================
 echo Building App with PyInstaller
@@ -12,12 +12,11 @@ echo What will be done:
 echo  1. Clean old build artifacts (dist, build, __pycache__)
 echo  2. Check/install PyInstaller and tomli
 echo  3. Run auto_build.py to create executable
-echo  4. Output: %OUTPUT_DIR%\qturtle.exe
+echo  4. Output: %OUTPUT_DIR%
 echo  5. To enable compression for PyInstaller, download upx.exe from upx.github.io (https://upx.github.io/).
 echo     and set upx_dir in pyproject.toml
 echo.
-echo  6. Is the output path valid?
-echo  7. Check pyproject.toml for correct build parameters!
+echo  6. Check pyproject.toml for correct build parameters!
 echo.
 echo.
 set /p PROCEED="Proceed? (y/N): "
@@ -32,7 +31,6 @@ echo Cleaning old build artifacts...
 if exist dist rmdir /s /q %OUTPUT_DIR%
 if exist build rmdir /s /q build
 if exist __pycache__ rmdir /s /q __pycache__
-if exist src\qturtle\__pycache__ rmdir /s /q src\qturtle\__pycache__
 echo.
 
 REM Check if .venv exists, if so activate it

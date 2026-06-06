@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Build QTurtle executable with PyInstaller using TOML configuration"""
+"""Build an application executable with PyInstaller using TOML configuration.
+
+Reads [tool.<app>.build] from pyproject.toml. The app section is either
+passed via --app=<name> or auto-detected as the only section containing
+an 'app_module' key.
+"""
 
 import sys
 from pathlib import Path
@@ -12,8 +17,12 @@ except ImportError:
 import PyInstaller.__main__
 
 
-def load_config():
-    """Load build configuration from pyproject.toml"""
+def load_config(app_name: str | None = None):
+    """Load build configuration from pyproject.toml.
+
+    Looks for [tool.<app_name>.build]. When app_name is None, auto-detects
+    by finding tool sub-sections that contain 'app_module'.
+    """
     config_path = Path("pyproject.toml")
 
     if not config_path.exists():
@@ -22,7 +31,25 @@ def load_config():
     with open(config_path, "rb") as f:
         config = tomllib.load(f)
 
-    return config.get("tool", {}).get("qturtle", {}).get("build", {})
+    tool = config.get("tool", {})
+
+    if app_name:
+        section = tool.get(app_name, {}).get("build", {})
+        if not section:
+            raise ValueError(f"No [tool.{app_name}.build] section found in pyproject.toml")
+        return section, app_name
+
+    # Auto-detect: find all [tool.*.build] sections that have app_module
+    candidates = [name for name, value in tool.items() if isinstance(value, dict) and "app_module" in value.get("build", {})]
+
+    if not candidates:
+        raise ValueError("No [tool.<app>.build] section with 'app_module' found in pyproject.toml.\n" "Use --app=<name> to specify the section explicitly.")
+    if len(candidates) > 1:
+        names = ", ".join(candidates)
+        raise ValueError(f"Multiple build sections found: {names}\n" f"Use --app=<name> to specify which one to build.")
+
+    name = candidates[0]
+    return tool[name]["build"], name
 
 
 def get_python_env():
@@ -58,8 +85,8 @@ def build_config_to_args(config):
     sep = ";" if sys.platform == "win32" else ":"
 
     # Required fields
-    app_module = config.get("app_module", "src/qturtle.py")
-    app_name = config.get("app_name", "QTurtle")
+    app_module = config.get("app_module", "src/app.py")
+    app_name = config.get("app_name", "App")
 
     args = [
         app_module,
@@ -106,16 +133,19 @@ def build_config_to_args(config):
     for exc in excludes:
         args.append(f"--exclude-module={exc}")
 
-    # Strip debug symbols
-    if config.get("strip", False):
+    # Strip debug symbols (Unix only — strip binary doesn't exist on Windows)
+    if config.get("strip", False) and sys.platform != "win32":
         args.append("--strip")
 
-    # UPX compression
-    if config.get("upx", False):
-        args.append("--upx")
+    # UPX compression (enabled by default in PyInstaller 6.x when upx is in PATH)
+    if not config.get("upx", True):
+        args.append("--noupx")
+    else:
         upx_dir = config.get("upx_dir")
         if upx_dir and Path(upx_dir).exists():
             args.append(f"--upx-dir={upx_dir}")
+        for exc in config.get("upx_exclude", []):
+            args.append(f"--upx-exclude={exc}")
 
     # Log level (for verbosity control)
     log_level = config.get("log_level", "WARN")
@@ -124,20 +154,25 @@ def build_config_to_args(config):
     return args
 
 
+def parse_args():
+    """Parse --app=<name> from sys.argv, return app name or None."""
+    for arg in sys.argv[1:]:
+        if arg.startswith("--app="):
+            return arg.split("=", 1)[1].strip()
+    return None
+
+
 def build():
-    """Build the QTurtle application"""
+    """Build the application defined in pyproject.toml."""
+    cli_app = parse_args()
     print("📋 Loading configuration from pyproject.toml...\n")
-    config = load_config()
+    config, section_name = load_config(cli_app)
 
-    if not config:
-        print("❌ No [tool.qturtle.build] section found in pyproject.toml")
-        sys.exit(1)
-
-    app_name = config.get("app_name", "QTurtle")
+    app_name = config.get("app_name", section_name)
 
     print(f"📦 Build Configuration for {app_name}")
     print("=" * 60)
-    print(f"App module: {config.get('app_module', 'src/qturtle.py')}")
+    print(f"App module: {config.get('app_module', 'src/app.py')}")
     print(f"Icon: {config.get('icon', 'Not set')}")
     print(f"Build mode: {config.get('build_mode', 'onedir')}")
     print(f"Data files: {', '.join(config.get('data_files', []))}")
@@ -165,5 +200,6 @@ if __name__ == "__main__":
     except Exception as e:
         print(f"\n❌ Build failed: {e}")
         import traceback
+
         traceback.print_exc()
         sys.exit(1)
