@@ -17,8 +17,6 @@ echo  Note: Nuitka compiles Python to C, then to native code.
 echo        First run downloads the C compiler - may take extra time.
 echo        Subsequent builds are faster.
 echo.
-echo  Check pyproject.toml for build parameters!
-echo.
 set /p PROCEED="Proceed? (y/N): "
 if /i not "%PROCEED%"=="y" (
     echo Cancelled.
