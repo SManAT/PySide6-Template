@@ -3,7 +3,8 @@
 
 import sys
 from pathlib import Path
-from cx_Freeze import setup, Executable
+
+from cx_Freeze import Executable, setup
 
 build_exe_options = {
     "packages": [
@@ -12,8 +13,7 @@ build_exe_options = {
         "PySide6.QtWidgets",
         "PySide6.QtPrintSupport",
         "qrcode",
-        "ui",
-        "ui.Ui_MainWindow",
+        "qrcode_app.ui.Ui_MainWindow",
     ],
     "include_files": [
         ("src/qrcode_app/css", "lib/qrcode_app/css"),
@@ -25,7 +25,6 @@ build_exe_options = {
         "scipy",
         "numpy",
         "pandas",
-        "PIL",
         "wx",
         "IPython",
         "jupyter",
@@ -46,11 +45,11 @@ build_exe_options = {
     "build_exe": "build/cxfreeze_temp",
 }
 
-icon_path = "assets/app.ico"
+icon_path = "src/assets/app.ico"
 
 executables = [
     Executable(
-        script="src/qrcode_app/main.py",
+        script="src/main.py",
         base="gui" if sys.platform == "win32" else None,
         target_name="QRCode.exe" if sys.platform == "win32" else "QRCode",
         icon=icon_path if (sys.platform == "win32" and Path(icon_path).exists()) else None,

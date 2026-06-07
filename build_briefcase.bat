@@ -4,7 +4,7 @@ REM Build with Briefcase and copy output to dist folder
 setlocal enabledelayedexpansion
 
 set "FORMAL_NAME=QRCode"
-set "APP_ID=qrcode"
+set "APP_ID=qrcode_app"
 set "BRIEFCASE_SOURCE=build\%APP_ID%\windows\app\src"
 set "OUTPUT_DIR=dist\%FORMAL_NAME%Briefcase"
 

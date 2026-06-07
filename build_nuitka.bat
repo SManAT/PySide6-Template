@@ -2,7 +2,7 @@
 setlocal enabledelayedexpansion
 
 set "OUTPUT_DIR=dist\QTurtleNuitka"
-set "NUITKA_TEMP=dist\_nuitka_build"
+set "NUITKA_TEMP=build\_nuitka_build"
 
 echo ================================================
 echo Building App with Nuitka
@@ -11,7 +11,7 @@ echo.
 echo What will be done:
 echo  1. Check/install Nuitka (and ordered-set for faster compilation)
 echo  2. Compile QTurtle to standalone executable
-echo  3. Output: %OUTPUT_DIR%\QTurtle.exe
+echo  3. Output: %OUTPUT_DIR%\
 echo.
 echo  Note: Nuitka compiles Python to C, then to native code.
 echo        First run downloads the C compiler - may take extra time.
@@ -64,20 +64,20 @@ echo Cleaning old build artifacts...
 if exist "%OUTPUT_DIR%" rmdir /s /q "%OUTPUT_DIR%"
 if exist "%NUITKA_TEMP%" rmdir /s /q "%NUITKA_TEMP%"
 if exist __pycache__ rmdir /s /q __pycache__
-if exist src\qturtle\__pycache__ rmdir /s /q src\qturtle\__pycache__
+if exist src\qrcode_app\__pycache__ rmdir /s /q src\qrcode_app\__pycache__
 echo.
 
 echo Building with Nuitka (this may take several minutes on first run)...
 python -m nuitka ^
     --standalone ^
-    --windows-disable-console ^
+    --windows-console-mode=disable ^
     --enable-plugin=pyside6 ^
     --follow-imports ^
-    --include-data-dir=src/qturtle/css=qturtle/css ^
-    --include-data-dir=src/qturtle/ui=qturtle/ui ^
+    --include-data-dir=src/qrcode_app/css=qrcode_app/css ^
+    --include-data-dir=src/qrcode_app/ui=qrcode_app/ui ^
     --windows-icon-from-ico=assets/app.ico ^
     --output-dir=%NUITKA_TEMP% ^
-    --output-filename=QTurtle ^
+    --output-filename=QRCode ^
     --python-flag=no_site ^
     --python-flag=no_docstrings ^
     --nofollow-import-to=matplotlib ^
@@ -91,7 +91,7 @@ python -m nuitka ^
     --nofollow-import-to=tkinter ^
     --nofollow-import-to=PyQt6 ^
     --remove-output ^
-    src/qturtle/main.py
+    src/qrcode_app/main.py
 
 if errorlevel 1 (
     echo.

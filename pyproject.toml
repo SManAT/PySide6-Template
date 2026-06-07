@@ -41,8 +41,8 @@ briefcase = [
 # PyInstaller configuration -----------------------------------------------------------
 [tool.qrcode.build]
 app_name = "QRCode"
-app_module = "src/qrcode_app/main.py"
-icon = "assets/app.ico"
+app_module = "src/main.py"
+icon = "src/assets/app.ico"
 data_files = [
     "src/qrcode_app/css",
     "src/qrcode_app/ui",
@@ -58,6 +58,7 @@ hidden_imports = [
     "PySide6.QtGui",
     "PySide6.QtWidgets",
     "PySide6.QtPrintSupport",
+    "qrcode",
     "qrcode_app.ui.Ui_MainWindow",
 ]
 collect_all = []
@@ -80,7 +81,6 @@ exclude_modules = [
     "scipy",
     "numpy",
     "pandas",
-    "PIL",
     "wx",
     "IPython",
     "jupyter",
@@ -107,15 +107,15 @@ version = "0.1.0"
 license = "GPL-3.0-or-later"
 
 
-[tool.briefcase.app.qrcode]
+[tool.briefcase.app.qrcode_app]
 formal_name = "QRCode"
 description = "Python IDE for running QRCode"
 sources = ["src/qrcode_app"]
 requires = ["pyside6-essentials>=6.4.0"]
-icon = "assets/app"
+icon = "qrcode_app/assets/app"
 license-files = ["LICENSE"]
 
-[tool.briefcase.app.qrcode.windows]
+[tool.briefcase.app.qrcode_app.windows]
 requires = [
     "pyside6-essentials>=6.4.0",
 ]

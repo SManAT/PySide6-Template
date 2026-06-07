@@ -1,8 +1,6 @@
 # PySide6-Template
 A pyside 6 template for students, also included 
 
-- Deployment Tools, PySide, Briefcase, cx_freeze and Nuktia see [PyInstaller.md](PyInstaller.md)
-
 # Introduction
 
 This template is an example application to create QR Codes. It explains the common workflow for beginners.
@@ -40,7 +38,7 @@ src/
     ├── ui/
     │   ├── __init__.py
     │   └── Ui_MainWindow.py
-    └── main.py
+    └── __main__.py
 ```
 
 

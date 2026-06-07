@@ -47,24 +47,11 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName(u"centralwidget")
         self.gridLayout_2 = QGridLayout(self.centralwidget)
         self.gridLayout_2.setObjectName(u"gridLayout_2")
-        self.password = QPlainTextEdit(self.centralwidget)
-        self.password.setObjectName(u"password")
+        self.SSID = QPlainTextEdit(self.centralwidget)
+        self.SSID.setObjectName(u"SSID")
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Maximum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.password.sizePolicy().hasHeightForWidth())
-        self.password.setSizePolicy(sizePolicy)
-        self.password.setMaximumSize(QSize(16777215, 35))
-
-        self.gridLayout_2.addWidget(self.password, 3, 0, 1, 1)
-
-        self.qrcode = QWidget(self.centralwidget)
-        self.qrcode.setObjectName(u"qrcode")
-
-        self.gridLayout_2.addWidget(self.qrcode, 8, 0, 1, 1)
-
-        self.SSID = QPlainTextEdit(self.centralwidget)
-        self.SSID.setObjectName(u"SSID")
         sizePolicy.setHeightForWidth(self.SSID.sizePolicy().hasHeightForWidth())
         self.SSID.setSizePolicy(sizePolicy)
         self.SSID.setMaximumSize(QSize(16777215, 35))
@@ -74,10 +61,23 @@ class Ui_MainWindow(object):
 
         self.gridLayout_2.addWidget(self.SSID, 1, 0, 1, 1)
 
+        self.label_2 = QLabel(self.centralwidget)
+        self.label_2.setObjectName(u"label_2")
+
+        self.gridLayout_2.addWidget(self.label_2, 2, 0, 1, 1)
+
         self.label = QLabel(self.centralwidget)
         self.label.setObjectName(u"label")
 
         self.gridLayout_2.addWidget(self.label, 0, 0, 1, 1)
+
+        self.password = QPlainTextEdit(self.centralwidget)
+        self.password.setObjectName(u"password")
+        sizePolicy.setHeightForWidth(self.password.sizePolicy().hasHeightForWidth())
+        self.password.setSizePolicy(sizePolicy)
+        self.password.setMaximumSize(QSize(16777215, 35))
+
+        self.gridLayout_2.addWidget(self.password, 3, 0, 1, 1)
 
         self.gridLayout = QGridLayout()
         self.gridLayout.setObjectName(u"gridLayout")
@@ -117,10 +117,21 @@ class Ui_MainWindow(object):
 
         self.gridLayout_2.addWidget(self.closeBtn_2, 9, 0, 1, 1)
 
-        self.label_2 = QLabel(self.centralwidget)
-        self.label_2.setObjectName(u"label_2")
+        self.qrcode = QWidget(self.centralwidget)
+        self.qrcode.setObjectName(u"qrcode")
 
-        self.gridLayout_2.addWidget(self.label_2, 2, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.qrcode, 8, 0, 1, 1)
+
+        self.consoleOutput = QPlainTextEdit(self.centralwidget)
+        self.consoleOutput.setObjectName(u"consoleOutput")
+        sizePolicy.setHeightForWidth(self.consoleOutput.sizePolicy().hasHeightForWidth())
+        self.consoleOutput.setSizePolicy(sizePolicy)
+        self.consoleOutput.setMaximumSize(QSize(16777215, 100))
+        font1 = QFont()
+        font1.setPointSize(14)
+        self.consoleOutput.setFont(font1)
+
+        self.gridLayout_2.addWidget(self.consoleOutput, 10, 0, 1, 1)
 
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -131,11 +142,11 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
-        self.password.setPlainText(QCoreApplication.translate("MainWindow", u"Wirklich geheim", None))
         self.SSID.setPlainText(QCoreApplication.translate("MainWindow", u"Mein WLAN", None))
+        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Passwort", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"SSID", None))
+        self.password.setPlainText(QCoreApplication.translate("MainWindow", u"Wirklich geheim", None))
         self.img.setText("")
         self.closeBtn_2.setText(QCoreApplication.translate("MainWindow", u"QR Code", None))
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Passwort", None))
     # retranslateUi
 
