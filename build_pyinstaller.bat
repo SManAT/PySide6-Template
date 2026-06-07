@@ -33,6 +33,8 @@ if exist build rmdir /s /q build
 if exist __pycache__ rmdir /s /q __pycache__
 echo.
 
+if not exist "%OUTPUT_DIR%" mkdir "%OUTPUT_DIR%"
+
 REM Check if .venv exists, if so activate it
 if exist .venv (
     echo Activating virtual environment...

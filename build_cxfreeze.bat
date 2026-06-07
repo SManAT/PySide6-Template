@@ -62,6 +62,7 @@ if exist "%CXFREEZE_TEMP%" rmdir /s /q "%CXFREEZE_TEMP%"
 if exist __pycache__ rmdir /s /q __pycache__
 echo.
 
+if not exist "%OUTPUT_DIR%" mkdir "%OUTPUT_DIR%"
 echo Building with cx_Freeze...
 python setup_cxfreeze.py build_exe
 

@@ -1,7 +1,7 @@
 @echo off
 setlocal enabledelayedexpansion
 
-set "OUTPUT_DIR=dist\QTurtleNuitka"
+set "OUTPUT_DIR=dist\QRCodeNuitka"
 set "NUITKA_TEMP=build\_nuitka_build"
 
 echo ================================================
@@ -67,6 +67,7 @@ if exist __pycache__ rmdir /s /q __pycache__
 if exist src\qrcode_app\__pycache__ rmdir /s /q src\qrcode_app\__pycache__
 echo.
 
+if not exist "%OUTPUT_DIR%" mkdir "%OUTPUT_DIR%"
 echo Building with Nuitka (this may take several minutes on first run)...
 python -m nuitka ^
     --standalone ^
@@ -75,23 +76,23 @@ python -m nuitka ^
     --follow-imports ^
     --include-data-dir=src/qrcode_app/css=qrcode_app/css ^
     --include-data-dir=src/qrcode_app/ui=qrcode_app/ui ^
-    --windows-icon-from-ico=assets/app.ico ^
+    --windows-icon-from-ico=src/assets/app.ico ^
     --output-dir=%NUITKA_TEMP% ^
     --output-filename=QRCode ^
     --python-flag=no_site ^
     --python-flag=no_docstrings ^
+    --python-flag=-m ^
     --nofollow-import-to=matplotlib ^
     --nofollow-import-to=scipy ^
     --nofollow-import-to=numpy ^
     --nofollow-import-to=pandas ^
-    --nofollow-import-to=PIL ^
     --nofollow-import-to=wx ^
     --nofollow-import-to=IPython ^
     --nofollow-import-to=jupyter ^
     --nofollow-import-to=tkinter ^
     --nofollow-import-to=PyQt6 ^
     --remove-output ^
-    src/qrcode_app/main.py
+    src/qrcode_app
 
 if errorlevel 1 (
     echo.
@@ -102,10 +103,14 @@ if errorlevel 1 (
 REM Move dist folder to final output location
 echo.
 echo Moving output to %OUTPUT_DIR%...
-set "NUITKA_DIST=%NUITKA_TEMP%\__main__.dist"
+set "NUITKA_DIST=%NUITKA_TEMP%\qrcode_app.dist"
 if exist "%NUITKA_DIST%" (
-    move "%NUITKA_DIST%" "%OUTPUT_DIR%"
+    move "%NUITKA_DIST%" "%OUTPUT_DIR%\dist"
     rmdir /s /q "%NUITKA_TEMP%" 2>nul
+
+    echo Creating symbolic link to QRCode.exe...
+    mklink "%OUTPUT_DIR%\QRCode.exe" "%OUTPUT_DIR%\dist\QRCode.exe"
+    
 ) else (
     echo ERROR: Expected dist folder not found: %NUITKA_DIST%
     exit /b 1
